@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+    <strong style="font-size: 26px;">TEST</strong>
+    <button mat-button [matMenuTriggerFor]="menuConfig"><mat-icon>settings</mat-icon><strong>Configuración</strong></button>
+    <mat-menu #menuConfig="matMenu">
+        <button mat-menu-item routerLink="/clienttype/view">Tipos de clientes</button>
+        <button mat-menu-item routerLink="/paymenttype/view">Tipos de pagos</button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="menuOp"><mat-icon>add_circle</mat-icon><strong>Operación</strong></button>
+    <mat-menu #menuOp="matMenu">
+        <button mat-menu-item routerLink="/client/view">Clientes</button>
+        <button mat-menu-item routerLink="/payment/add">Pagos</button>
+    </mat-menu>
+    <button mat-button routerlinkactive="docs-navbar-header-item-selected" routerLink="/consult"><mat-icon>manage_search</mat-icon><strong>Consultas</strong></button>
+    <span class="flexExpand"></span>
+    <button mat-button routerLink="/auth" *ngIf="!isAuthenticated"><mat-icon >login</mat-icon>LogIn</button>
+    <button mat-button *ngIf="isAuthenticated" (click)="onLogout()"><mat-icon >logout</mat-icon>LogOut</button>
+</mat-toolbar>

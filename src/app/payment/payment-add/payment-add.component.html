@@ -1,0 +1,33 @@
+<mat-card class="form-card" style="text-align: center;">
+    <mat-card-content>
+        <form #paymentForm="ngForm" (ngSubmit)="onCreatePayment(paymentForm)">
+            <h2>Crear Pago</h2>
+            <mat-form-field>
+                <mat-label>Cliente</mat-label>
+                <mat-select required id="clientSelected">
+                    <mat-option (onSelectionChange)="changeClient($event)" *ngFor="let client of clients" id="{{client.id}}" [value]="client">
+                        {{ client.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Tipo de pago</mat-label>
+                <mat-select required id="paymentTypeSelected">
+                    <mat-option (onSelectionChange)="changeType($event)" *ngFor="let paymentType of paymentTypes" [value]="paymentType" id="{{paymentType.id}}">
+                        {{ paymentType.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Monto" type="number" name="amount" id="amount" class="form-control" ngModel min="1" required>
+                <mat-error *ngIf="errorAmount">
+                    El monto debe ser mayor a 0
+                </mat-error>
+                <mat-error *ngIf="!errorAmount">
+                    El monto debe ser mayor a {{ amountTotal }}
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!paymentForm.form.valid" style="margin-top: 10px;">Crear</button>
+        </form>
+    </mat-card-content>
+</mat-card>

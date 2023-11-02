@@ -1,0 +1,37 @@
+<mat-card class="form-card" style="text-align: center;">
+    <mat-card-content>
+        <form #clientForm="ngForm" (ngSubmit)="onUpdateClient(clientForm)">
+            <h2>Editar Cliente</h2>
+            <mat-form-field>
+                <input matInput type="text" name="id" id="id" class="form-control" ngModel disabled>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Nombre" type="text" name="name" id="name" class="form-control" ngModel pattern="[A-Za-zñÑ ]+" required>
+                <mat-error>
+                    Ingrese un nombre válido, solo letras
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Edad" type="text" name="age" id="age" class="form-control" ngModel pattern="^(1[89]|[2-9]\d|100)$" required>
+                <mat-error>
+                    Edad entre 18 y 100 años
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="NIT" type="text" name="nit" id="nit" class="form-control" ngModel pattern="^[0-9]+(-?[0-9kK])?$" required>
+                <mat-error>
+                    NIT incorrecto
+                </mat-error>
+            </mat-form-field>
+            <mat-card>
+                <mat-label><strong>Tipos de pago</strong></mat-label>
+                <mat-selection-list name="paymentsTypes" id="paymentsTypes" ngModel required>
+                    <mat-list-option *ngFor="let paymentType of paymentTypes; let id = index" style="text-align: left;" id="{{id}}">
+                        {{ paymentType }}
+                    </mat-list-option>
+                </mat-selection-list>
+            </mat-card>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!clientForm.form.valid" style="margin-top: 10px;">Guardar</button>
+        </form>
+    </mat-card-content>
+</mat-card>

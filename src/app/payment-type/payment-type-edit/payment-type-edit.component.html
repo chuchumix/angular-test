@@ -1,0 +1,26 @@
+<mat-card class="form-card" style="text-align: center;">
+    <mat-card-content>
+        <form #paymentTypesForm="ngForm" (ngSubmit)="onUpdatePaymentType(paymentTypesForm)">
+            <h2>Editar Tipo de Pago</h2>
+            <mat-form-field>
+                <input matInput type="text" name="id" id="id" class="form-control" ngModel disabled>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Nombre" type="text" name="name" id="name" class="form-control" ngModel required>
+                <mat-error>
+                    Ingrese un nombre válido, solo letras
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Monto" type="number" name="amount" id="amount" class="form-control" ngModel min="1" required>
+                <mat-error>
+                    El monto debe ser mayor a 0
+                </mat-error>
+            </mat-form-field>
+            <mat-chip-listbox>
+                <mat-chip-option id="partialPayment" (click)="partialPayment=!partialPayment" [selected]="partialPayment">Pagos Parciales</mat-chip-option>
+            </mat-chip-listbox>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!paymentTypesForm.form.valid" style="margin-top: 10px;">Guardar</button>
+        </form>
+    </mat-card-content>
+</mat-card>

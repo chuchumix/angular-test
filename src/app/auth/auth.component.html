@@ -1,0 +1,26 @@
+<mat-card style="text-align: center;">
+    <mat-card-content>
+        <div *ngIf="isLoading" style="text-align: center;">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" *ngIf="!isLoading">
+            <h2>LogIn</h2>
+            <mat-error>
+                {{ error }}
+            </mat-error>
+            <mat-form-field>
+                <input matInput placeholder="Correo" type="text" name="email" id="email" class="form-control" ngModel required email>
+                <mat-error>
+                    Ingrese un correo válido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Contraseña" type="password" name="password" id="password" class="form-control" ngModel required minlength="6">
+                <mat-error>
+                    Ingrese una contraseña
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.form.valid">Login</button>
+        </form>
+    </mat-card-content>
+</mat-card>

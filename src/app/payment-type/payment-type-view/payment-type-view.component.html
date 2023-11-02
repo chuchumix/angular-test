@@ -1,0 +1,33 @@
+<div class="container-btn-add">
+    <button mat-raised-button color="primary" style=" margin: 10px" routerLink="/paymenttype/add"><mat-icon>person_add</mat-icon>Crear Tipo de Pago</button>
+</div>
+<div class="center-content mat-elevation-z8" style="width: 90%;">
+    <mat-table matSort [dataSource]="dataSource" (matSortChange)="announceSortChange($event)">
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="partialpayment">
+            <mat-header-cell *matHeaderCellDef> Pago Parcial </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-checkbox color="primary" disabled [checked]="row.partialPayment"></mat-checkbox>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Monto </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.amount|currency: 'Q'}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+            <mat-cell *matCellDef="let row"><button mat-mini-fab color="primary" style="margin: 5px;" (click)="onEditPaymentType(row.id)"><mat-icon>edit</mat-icon></button><button mat-mini-fab color="warn" style="margin: 5px;" (click)="onDeletePaymentType(row.id)"><mat-icon>delete</mat-icon></button></mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="['id', 'name', 'partialpayment', 'amount', 'actions']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['id', 'name', 'partialpayment', 'amount', 'actions']"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Selecciona página de clientes" class="center-pagination"></mat-paginator>
+</div>

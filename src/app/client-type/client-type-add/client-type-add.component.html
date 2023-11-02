@@ -1,0 +1,14 @@
+<mat-card class="form-card" style="text-align: center;">
+    <mat-card-content>
+        <form #clientTypeForm="ngForm" (ngSubmit)="onCreateClient(clientTypeForm)">
+            <h2>Crear Tipo de Cliente</h2>
+            <mat-form-field>
+                <input matInput placeholder="Nombre" type="text" name="name" id="name" class="form-control" ngModel pattern="[A-Za-zñÑ ]+" required>
+                <mat-error>
+                    Ingrese un nombre válido, solo letras
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!clientTypeForm.form.valid" style="margin-top: 10px;">Crear</button>
+        </form>
+    </mat-card-content>
+</mat-card>
